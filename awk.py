@@ -20,7 +20,9 @@ def getIdx(av):
 
 def getOutput(idx, av, inTxt):
 	output = av[2]
-	for i in idx: output = output.replace(f".{i}", inTxt[i - 1])
+	try:
+		for i in idx: output = output.replace(f".{i}", inTxt[i - 1])
+	except Exception as e: print(e); exit()
 	return output
 
 def main():
