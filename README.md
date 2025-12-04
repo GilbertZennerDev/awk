@@ -1,9 +1,3 @@
-That's a **great idea**\! A punchy, feature-focused README will help others quickly understand and use your excellent little Python utility. 🚀
-
-Here is a highly readable README optimized for GitHub:
-
------
-
 # 🐍 Python Awk Utility (`python-awk`)
 
 A small, versatile Python utility that mimics the pattern-matching and field-processing functionality of the classic Unix `awk` command. Easily extract and replace fields from input strings, standard input, or files\!
