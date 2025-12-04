@@ -3,33 +3,32 @@
 
 import sys
 
-def parseInput():
-	av = sys.argv
-	ac = len(av)
-	if ac != 3: exit()
+def getAvAc():
+	return sys.argv, len(sys.argv) 
+
+def getInTxt(av):
 	if av[1] == '-stdin':
 		inTxt = [line.split(' ') for line in sys.stdin][0]
 	else:
 		inTxt = av[1].split()
-	print(inTxt)
-	inTxt = [part.replace('\n', '') for part in inTxt]
+	return [part.replace('\n', '') for part in inTxt]
+
+def getIdx(av):
 	idx = av[2].split(' ')
-	#print(inTxt)
-	#idx = av[1].split(' ')
-	print(idx)
 	idx = [i for i in idx if len(i)]
-	print(idx)
-	idx = [int(i[1:]) for i in idx if i[0] == '.']
-	print(idx)
+	return [int(i[1:]) for i in idx if i[0] == '.']
+
+def getOutput(idx, av, inTxt):
 	output = av[2]
 	for i in idx: output = output.replace(f".{i}", inTxt[i - 1])
+	return output
+
+def main():
+	av, ac = getAvAc()
+	if ac != 3: exit()
+	inTxt = getInTxt(av)
+	idx = getIdx(av)
+	output = getOutput(idx, av, inTxt)
 	print("Final Output:", output)
 
-
-def printOutput(): pass
-def saveOutput(): pass
-def main():
-	parseInput()
-	printOutput()
-	saveOutput()
 if __name__ == '__main__': main()
