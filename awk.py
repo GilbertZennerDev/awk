@@ -7,8 +7,12 @@ def getAvAc():
 	return sys.argv, len(sys.argv) 
 
 def getInTxt(av):
-	if av[1] == '-stdin':
-		inTxt = [line.split(' ') for line in sys.stdin][0]
+	if av[1][0] == '-':
+		if av[1] == '-stdin':
+			inTxt = [line.split(' ') for line in sys.stdin][0]
+		else:
+			try: inTxt = open(av[1][1:], "r").read().split(' ')
+			except Exception as e: print(e); exit()
 	else:
 		inTxt = av[1].split()
 	return [part.replace('\n', '') for part in inTxt]
