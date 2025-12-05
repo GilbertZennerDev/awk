@@ -58,7 +58,7 @@ char **in_txt, unsigned int count_words)
 	i = 0;
 	while (i < count_idx)
 	{
-		if (i < count_words)
+		if (idx_nbrs[i] - 1 < count_words)
 			printf("%s ", in_txt[idx_nbrs[i] - 1]);
 		++i;
 	}
