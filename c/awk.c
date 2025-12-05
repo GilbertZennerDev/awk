@@ -20,6 +20,7 @@ def getInTxt(av):
 */
 
 #include <string.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -101,12 +102,18 @@ char **getInTxt(char **av, unsigned int *words)
 	return (ft_splittedline(av[1], ' ', *words));
 }
 
+bool ft_isnumeric(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
 char **ft_cleanidx(char **idx1, unsigned int countCleanIdx, unsigned int words)
 {
 	char **cleaned;
 	unsigned int i;
 	unsigned int j;
 	unsigned int k;
+	unsigned int l;
 
 	cleaned = malloc(sizeof(char *) * countCleanIdx);
 	i = 0;
@@ -117,15 +124,19 @@ char **ft_cleanidx(char **idx1, unsigned int countCleanIdx, unsigned int words)
 	while (i < words && j < countCleanIdx)
 	{
 		k = 0;
+		l = 0;
 		if (idx1[i][0] != '.')
 		{
 			++i;
 			continue;
 		}
-		while (idx1[i][k])
+		while (idx1[i][l])
 		{
-			cleaned[j][k] = idx1[i][k];
-			++k;
+			if (ft_isnumeric(idx1[i][l]))
+			{
+				cleaned[j][k++] = idx1[i][l];
+			}
+			++l;
 		}
 		cleaned[j++][k] = 0;
 		++i;
@@ -177,13 +188,7 @@ int *getIdx(char **av, unsigned int words)
 	cleanidx1 = ft_cleanidx(idx1, countCleanIdx, words);
 	//idx_nbrs = ft_getnbrs(cleanidx1);
 	
-	unsigned int i;
-	i = 0;
-	while (i < 2)
-	{
-		printf("%s\n", idx1[i]);
-		++i;
-	}
+	printf("Clean Idx: .%s.\n", cleanidx1[0]);
 }
 
 char *getOutput(int *idx_nbrs, char **av, char **inTxt)
