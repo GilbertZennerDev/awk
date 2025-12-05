@@ -43,9 +43,9 @@ int	*get_idx(char **av, unsigned int *countIdx)
 	char			**idx1;
 	char			**cleanidx1;
 
-	ft_countWords(av[2], &words, ' ');
+	ft_count_words(av[2], &words, ' ');
 	idx1 = ft_splittedline(av[2], ' ');
-	ft_countCleanIdx(countIdx, words, idx1);
+	ft_count_clean_idx(countIdx, words, idx1);
 	cleanidx1 = ft_cleanidx(idx1, *countIdx, words);
 	return (ft_getnbrs(cleanidx1, words));
 }
