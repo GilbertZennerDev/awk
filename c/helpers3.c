@@ -1,4 +1,4 @@
-#include "header.hpp"
+#include "header.h"
 
 char **ft_cleanidx(char **idx1, unsigned int countCleanIdx, unsigned int words)
 {

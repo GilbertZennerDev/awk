@@ -1,4 +1,4 @@
-#include "header.hpp"
+#include "header.h"
 
 void	ft_countWords(char buffer[], unsigned int *words, char splitter)
 {
