@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <fcntl.h>
+#include <vector>
 #include <string.h>
+#include <string>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>

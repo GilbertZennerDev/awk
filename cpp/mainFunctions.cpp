@@ -9,7 +9,7 @@ char	**get_in_txt(char **av)
 	if (av[1][0] == '-')
 	{
 		fd = 0;
-		if (strcmp(av[1], "-stdin") != 0)
+		if (std::string(av[1]) == "-stdin")
 			fd = open("file", O_RDONLY);
 		bytes_read = read(fd, buffer, 1023);
 		if (bytes_read < 0)
@@ -28,7 +28,7 @@ int	*ft_getnbrs(char **cleaned, unsigned int words)
 	int				*idx_nbrs;
 
 	i = 0;
-	idx_nbrs = malloc(sizeof(int) * 10);
+	idx_nbrs = (int *)malloc(sizeof(int) * 10);
 	while (i < words)
 	{
 		idx_nbrs[i] = atoi(cleaned[i]);
@@ -39,7 +39,9 @@ int	*ft_getnbrs(char **cleaned, unsigned int words)
 
 int	*get_idx(char **av, unsigned int *countIdx)
 {
-	unsigned int	words;
+	unsigned int		i;
+	int			*result;
+	unsigned int		words;
 	char			**idx1;
 	char			**cleanidx1;
 
@@ -47,7 +49,16 @@ int	*get_idx(char **av, unsigned int *countIdx)
 	idx1 = ft_splittedline(av[2], ' ');
 	ft_count_clean_idx(countIdx, words, idx1);
 	cleanidx1 = ft_cleanidx(idx1, *countIdx, words);
-	return (ft_getnbrs(cleanidx1, words));
+	result = ft_getnbrs(cleanidx1, words);
+	i = 0;
+	while (i < words)
+		free(idx1[i++]);
+	free(idx1);
+	i = 0;
+	while (i < *countIdx)
+		free(cleanidx1[i++]);
+	free(cleanidx1);
+	return (result);
 }
 
 void	get_output(int *idx_nbrs, unsigned int count_idx, \
