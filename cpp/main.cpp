@@ -83,8 +83,9 @@ string getOutput(const vector<int> &idx, const vector<string> &tokens)
 	while (++i < idx.size())
 	{
 		output += tokens[idx[i]] + " ";
-		cout << "debug output:" << output << "\n";
+//		cout << "debug output:" << output << "\n";
 	}
+	cout << "Output:" << output << "\n";
 	return (output);
 }
 
@@ -120,8 +121,9 @@ int main(int ac, char **av)
 	vector<int> tokenIndexes;
 
 	if (ac != 3) {cout << "Usage: python3 " << av[0] << " 'input' '.1'\n -filename '.1' to read from file\n -stdin '.1' to read from stdin"; return (1);}
-	if(getTokens(tokens, getInTxt(av))) return (1);
-/*	getIdx(av, idx);
-	getOutput(idx, tokens);*/
+	if(!getTokens(tokens, getInTxt(av))) return (1);
+	getIdx(av, idx);
+	string output = getOutput(idx, tokens);
+	cout << "output:" << output << "\n";
 	return (0);
 }
